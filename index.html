@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mayur Rastogi - MERN Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #10b981;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --gray: #94a3b8;
+        --gray-dark: #64748b;
+        --background: #ffffff;
+        --card-bg: #ffffff;
+        --header-bg: rgba(255, 255, 255, 0.95);
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --radius: 12px;
+        --radius-sm: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--background);
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      section {
+        padding: 5rem 0;
+      }
+
+      h1, h2, h3, h4 {
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2.25rem; }
+      h3 { font-size: 1.5rem; }
+      h4 { font-size: 1.25rem; }
+
+      p {
+        color: var(--gray-dark);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-sm);
+        font-weight: 500;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-youtube {
+        background-color: #ff0000;
+        color: white;
+      }
+
+      .btn-youtube:hover {
+        background-color: #cc0000;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--header-bg);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--dark);
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      nav a {
+        font-weight: 500;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      nav a:hover::after,
+      nav a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 6rem;
+        background: linear-gradient(135deg, #f9f9ff 0%, #f0f4ff 100%);
+      }
+
+      .hero-content {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-image img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+      }
+
+      .tagline {
+        font-size: 1.25rem;
+        color: var(--gray-dark);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--light);
+        color: var(--dark);
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Section Titles */
+      .section-title {
+        text-align: center;
+        margin-bottom: 4rem;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        margin: 1rem auto;
+        border-radius: 2px;
+      }
+
+      /* About Section */
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .about-image img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .highlight {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: 600;
+      }
+
+      /* Experience Section */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background-color: var(--gray);
+        opacity: 0.3;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+      }
+
+      .timeline-content {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .timeline-content::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        border: 4px solid var(--background);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: auto;
+        width: calc(50% - 40px);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::before {
+        left: -60px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        width: calc(50% - 40px);
+      }
+
+      .timeline-item:nth-child(even) .timeline-content::before {
+        right: -60px;
+      }
+
+      .timeline-date {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background-color: var(--primary);
+        color: white;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-company {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-list {
+        list-style: none;
+      }
+
+      .timeline-list li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-list li::before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+      }
+
+      /* Skills Section */
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .skill-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .skill-card h3 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .skill-list {
+        list-style: none;
+      }
+
+      .skill-list li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .skill-list li::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--primary);
+      }
+
+      /* Projects Section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .project-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .project-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.05);
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .project-content h3 {
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      /* YouTube Section */
+      .youtube-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .youtube-videos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        width: 100%;
+      }
+
+      .video-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .video-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .video-thumbnail {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+      }
+
+      .video-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 0, 0, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .video-card:hover .play-icon {
+        opacity: 1;
+      }
+
+      .video-info {
+        padding: 1rem;
+      }
+
+      .video-info h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .video-stats {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--gray-dark);
+      }
+
+      /* Contact Section */
+      .contact-container {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .contact-info {
+        flex: 1;
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--gray);
+        border-radius: var(--radius-sm);
+        font-family: inherit;
+        transition: var(--transition);
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      }
+
+      textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        color: var(--gray);
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .copyright {
+        color: var(--gray);
+        font-size: 0.875rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .hero-content,
+        .about-content,
+        .contact-container {
+          flex-direction: column;
+        }
+
+        .timeline::before {
+          left: 30px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content,
+        .timeline-item:nth-child(even) .timeline-content {
+          width: calc(100% - 80px);
+          margin-left: 80px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before,
+        .timeline-item:nth-child(even) .timeline-content::before {
+          left: -60px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          position: fixed;
+          top: 80px;
+          left: 0;
+          right: 0;
+          background-color: var(--header-bg);
+          backdrop-filter: blur(10px);
+          padding: 1rem;
+          box-shadow: var(--shadow);
+          transform: translateY(-150%);
+          opacity: 0;
+          transition: var(--transition);
+        }
+
+        nav.active {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        nav ul {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+      }
+
+      @media (max-width: 576px) {
+        .hero-btns {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        section {
+          padding: 3rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <a href="#" class="logo">Mayur<span>.</span></a>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#youtube">YouTube</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Mayur Rastogi</h1>
+            <p class="tagline">MERN Stack Developer & Content Creator</p>
+            <p>I build exceptional digital experiences with modern web technologies and share my knowledge with the developer community.</p>
+            <div class="hero-btns">
+              <a href="#contact" class="btn btn-primary">Get In Touch</a>
+              <a href="#projects" class="btn btn-outline">View Projects</a>
+            </div>
+            <div class="social-links">
+              <a href="https://github.com/mayurcoding" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://linkedin.com/in/mayurcoding" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://youtube.com/@mayurcoding" target="_blank"><i class="fab fa-youtube"></i></a>
+              <a href="https://twitter.com/mayurcoding" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Mayur Rastogi" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>Hi, I'm <span class="highlight">Mayur Rastogi</span> – a passionate Full Stack Developer specializing in the MERN stack (MongoDB, Express.js, React.js, Node.js).</p>
+            <p>I recently completed a 6-month internship at <span class="highlight">Cuvette Tech</span> where I worked on live projects and contributed to scalable web applications.</p>
+            <p>With strong foundations in JavaScript, REST APIs, and cloud deployment, I build solutions that are efficient, user-friendly, and visually appealing.</p>
+            <p>I'm also a <span class="highlight">content creator on YouTube</span>, sharing valuable tips on coding, career guidance, and project building. My goal is to become a top-tier software engineer and eventually start my own tech company.</p>
+            <p>Let's build something amazing together!</p>
+          </div>
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Mayur Rastogi" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date">Jan 2025 - Jun 2025</span>
+              <h3 class="timeline-company">MERN Stack Developer Intern</h3>
+              <p class="company">Cuvette Tech | Remote</p>
+              <ul class="timeline-list">
+                <li>Built and maintained full-stack web applications using MongoDB, Express, React, and Node</li>
+                <li>Contributed to the Sales CRM Dashboard Project with features like lead management, attendance, and analytics</li>
+                <li>Worked with Git, Postman, Vercel, and MongoDB Atlas for CI/CD and backend services</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+          <div class="skill-card">
+            <h3><i class="fas fa-code"></i> Frontend</h3>
+            <ul class="skill-list">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>React.js</li>
+              <li>Redux</li>
+              <li>Tailwind CSS</li>
+              <li>Bootstrap</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-server"></i> Backend</h3>
+            <ul class="skill-list">
+              <li>Node.js</li>
+              <li>Express.js</li>
+              <li>REST API</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-database"></i> Database</h3>
+            <ul class="skill-list">
+              <li>MongoDB</li>
+              <li>MySQL (basic)</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-tools"></i> Tools</h3>
+            <ul class="skill-list">
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>Postman</li>
+              <li>Vercel</li>
+              <li>Netlify</li>
+              <li>VS Code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="CRM Dashboard" />
+            </div>
+            <div class="project-content">
+              <h3>Sales CRM Dashboard (MERN)</h3>
+              <p>Admin & Employee dashboard with features like lead management, attendance tracking, scheduled calls, analytics, and CSV upload.</p>
+              <div class="project-links">
+                <a href="https://github.com/mayurcoding/CRM.git" class="btn btn-outline" target="_blank">
+                  <i class="fab fa-github"></i> Code
+                </a>
+                <a href="#" class="btn btn-primary">Live Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Shopping Cart" />
+            </div>
+            <div class="project-content">
+              <h3>Smart Shopping Cart (MERN)</h3>
+              <p>An e-commerce app with product search, cart, checkout, and user profile. Managed user info with Context API and cart state with Redux.</p>
+              <div class="project-links">
+                <a href="https://github.com/mayurcoding/Smart-Shopping-Cart-Application.git" class="btn btn-outline" target="_blank">
+                  <i class="fab fa-github"></i> Code
+                </a>
+                <a href="#" class="btn btn-primary">Live Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Job Portal" />
+            </div>
+            <div class="project-content">
+              <h3>Job Application Portal (MERN)</h3>
+              <p>A multi-step job application system with resume upload, applicant dashboard, and admin overview features.</p>
+              <div class="project-links">
+                <a href="https://github.com/mayurcoding/Job-Application-Portal-.git" class="btn btn-outline" target="_blank">
+                  <i class="fab fa-github"></i> Code
+                </a>
+                <a href="#" class="btn btn-primary">Live Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Weather App" />
+            </div>
+            <div class="project-content">
+              <h3>Weather App (React)</h3>
+              <p>Displays real-time weather information using OpenWeather API. Styled with Tailwind CSS and fully responsive.</p>
+              <div class="project-links">
+                <a href="https://github.com/mayurcoding/Weather-App-.git" class="btn btn-outline" target="_blank">
+                  <i class="fab fa-github"></i> Code
+                </a>
+                <a href="#" class="btn btn-primary">Live Demo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section id="youtube">
+      <div class="container">
+        <h2 class="section-title">YouTube Channel</h2>
+        <div class="youtube-container">
+          <div class="youtube-info">
+            <h3>Mayur Coding</h3>
+            <p>Content: Coding tutorials, project walkthroughs, AI tools, career guidance, resume tips, and web development series.</p>
+            <p>Subscribers: 564+ (and growing!)</p>
+            <p>Goal: To help students and beginners become job-ready developers.</p>
+            <a href="https://youtube.com/@mayurcoding" class="btn btn-youtube" target="_blank">
+              <i class="fab fa-youtube"></i> Visit Channel
+            </a>
+          </div>
+          <div class="youtube-videos">
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail" />
+                <div class="play-icon">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="video-info">
+                <h3>MERN Stack Tutorial for Beginners</h3>
+                <div class="video-stats">
+                  <span><i class="fas fa-eye"></i> 10K views</span>
+                  <span><i class="fas fa-thumbs-up"></i> 500</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail" />
+                <div class="play-icon">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="video-info">
+                <h3>React Hooks Explained</h3>
+                <div class="video-stats">
+                  <span><i class="fas fa-eye"></i> 8K views</span>
+                  <span><i class="fas fa-thumbs-up"></i> 400</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail" />
+                <div class="play-icon">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="video-info">
+                <h3>Build a Weather App in React</h3>
+                <div class="video-stats">
+                  <span><i class="fas fa-eye"></i> 5K views</span>
+                  <span><i class="fas fa-thumbs-up"></i> 300</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h3>Email</h3>
+                <p>mayurcoding@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <h3>Phone</h3>
+                <p>+91-7454955886</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h3>Location</h3>
+                <p>Bareilly, Uttar Pradesh, India</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+               
